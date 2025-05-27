@@ -4,3 +4,5 @@ __pycache__/
 plan.txt
 
 .vscode/settings.json
+
+.github/workflows/python-tests.yml
