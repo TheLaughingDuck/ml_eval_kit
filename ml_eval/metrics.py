@@ -1,11 +1,8 @@
-#%%
-import logging
-
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import numpy as np
 
-
-logging.basicConfig(filename="run.log",
+import logging
+logging.basicConfig(filename="logs/run.log",
                     level=logging.INFO,
                     format='%(asctime)s  %(levelname)s: %(message)s')
 logging.info("Metrics module loaded successfully.")
@@ -39,7 +36,7 @@ def calculate_metrics(labels, predictions) -> dict:
     out["global"]["accuracy"] = accuracy_score(labels, predictions)
     out["global"]["n_missclassifications"] = int(n_samples-accuracy_score(labels, predictions, normalize=False))
     
-    balanced_acc = recall_score(labels, predictions, average=None, num_classes=n_classes)
+    balanced_acc = recall_score(labels, predictions, average=None)
     out["global"]["balanced_accuracy"] = sum(balanced_acc) / n_classes
 
     out["global"]["precision"] = precision_score(labels, predictions, average='macro', zero_division=0)

@@ -1,7 +1,5 @@
 
 
-
-
 def get_conf_matrix(all_preds, all_targets, n_classes=3) -> list:
     '''
     Takes two integer lists of all target classes, and all predictions by some classifier.
@@ -23,6 +21,8 @@ def get_conf_matrix(all_preds, all_targets, n_classes=3) -> list:
 
 
 
+import matplotlib.pyplot as plt
+import numpy as np
 
 def create_conf_matrix_fig(conf_matrix, save_fig_as=None, epoch=None, title="", n_classes=3, subtitle=None):
     '''
