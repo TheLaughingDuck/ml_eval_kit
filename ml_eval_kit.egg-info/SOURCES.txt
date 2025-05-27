@@ -1,5 +1,7 @@
+README.md
 setup.py
 ml_eval/__init__.py
+ml_eval/cli.py
 ml_eval/metrics.py
 ml_eval/plots.py
 ml_eval_kit.egg-info/PKG-INFO
@@ -8,3 +10,5 @@ ml_eval_kit.egg-info/dependency_links.txt
 ml_eval_kit.egg-info/entry_points.txt
 ml_eval_kit.egg-info/requires.txt
 ml_eval_kit.egg-info/top_level.txt
+tests/test_metrics.py
+tests/test_plots.py

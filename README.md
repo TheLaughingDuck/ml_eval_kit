@@ -19,3 +19,10 @@ create_conf_matrix_fig(m, classes=["A", "B", "C", "D", "E"],
 ```
 
 ![alt text](images/confusion_matrix.png)
+
+## CLI Tool usage
+Start the `ml-eval` tool by running
+
+```
+ml-eval --y_true tests/y_true.csv --y_pred tests/y_pred.csv --output results/
+```

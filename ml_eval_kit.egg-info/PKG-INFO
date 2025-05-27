@@ -6,7 +6,7 @@ Author: Simon Jorstedt
 Author-email: jorstedtsimon@gmail.com
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
-Requires-Python: >=3.8
+Requires-Python: >=3.12
 Requires-Dist: numpy
 Requires-Dist: scikit-learn
 Requires-Dist: matplotlib
