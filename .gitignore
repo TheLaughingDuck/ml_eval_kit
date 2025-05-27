@@ -2,3 +2,5 @@
 __pycache__/
 
 plan.txt
+
+.vscode/settings.json

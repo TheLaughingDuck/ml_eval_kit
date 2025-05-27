@@ -53,14 +53,3 @@ def calculate_metrics(labels, predictions) -> dict:
 
 
     return out
-
-
-
-labels = [0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2]
-predic = [0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2]
-
-calculate_metrics(labels, predic)
-
-# %%
-
-# %%
