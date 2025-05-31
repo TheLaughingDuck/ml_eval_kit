@@ -21,8 +21,8 @@ create_conf_matrix_fig(m, classes=["A", "B", "C", "D", "E"],
 ![alt text](images/confusion_matrix.png)
 
 ## CLI Tool usage
-Start the `ml-eval` tool by running
+The package comes with a CLI tool. Open a CLI, cd into the package dir ("ml_eval_kit"), and run the following command, if the true labels are stored row-wise in "some_dir/y_true.csv", and predictions are stored row-wise in "some_dir/y_pred.csv".
 
 ```
-ml-eval --y_true tests/y_true.csv --y_pred tests/y_pred.csv --output results/
+ml-eval --y_true some_dir/y_true.csv --y_pred some_dir/y_pred.csv --output results/
 ```
