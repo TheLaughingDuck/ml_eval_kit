@@ -38,7 +38,7 @@ def get_conf_matrix(all_preds, all_targets, n_classes=None, verbose=0) -> list:
 import matplotlib.pyplot as plt
 import numpy as np
 
-def create_conf_matrix_fig(conf_matrix, classes, save_fig_as=None, title="", subtitle=None):
+def create_conf_matrix_fig(conf_matrix, classes=None, save_fig_as=None, title="", subtitle=None):
     '''
     Takes confusion matrices (on training and validation data),
     and creates a figure with them. Saves as a png.
@@ -76,9 +76,3 @@ def create_conf_matrix_fig(conf_matrix, classes, save_fig_as=None, title="", sub
         fig.suptitle(title, fontsize=16)
         fig.tight_layout()
         fig.show()
-
-
-m = get_conf_matrix([0, 1, 2, 0, 1, 2], [0, 1, 2, 1, 0, 2], n_classes=5)
-create_conf_matrix_fig(m, save_fig_as=None, classes=["A", "B", "C", "D", "E"], title="Test Confusion Matrix", subtitle="This is a test subtitle")
-
-# %%
