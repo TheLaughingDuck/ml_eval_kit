@@ -1,16 +1,25 @@
+'''
+This script is used to run the evaluation from the command line.
+It takes the true labels and predicted labels as input,
+and outputs the evaluation metrics in a JSON file.
+
+Run it using for example:
+ml-eval --y_true tests/y_true.csv --y_pred tests/y_pred.csv --output results/
+'''
+
 import argparse
 from ml_eval.metrics import calculate_metrics
 import json
 import os
 
 def main():
-    print("Started ml-eval-kit evalutation")
+    print("\nStarted ml-eval-kit evalutation.\n")
 
-    parser = argparse.ArgumentParser(description="Swin UNETR segmentation pipeline for BRATS Challenge")
+    # Load command line arguments
+    parser = argparse.ArgumentParser()
     parser.add_argument("--y_true", type=str, required=True, help="Path to a .csv file with the true labels")
     parser.add_argument("--y_pred", type=str, required=True, help="Path to a .csv file with the predicted labels")
-    parser.add_argument("--output", type=str, required=True, help="Path to save the evaluation results")
-
+    parser.add_argument("--output", type=str, required=True, help="Output directory to save the evaluation metrics")
     args = parser.parse_args()
 
     # Load the true labels and predictions from the provided paths
@@ -36,8 +45,7 @@ def main():
         json.dump(metrics, f, indent=4)
     
 
-    print("Evaluation completed. Results saved to:", args.output + "metrics.json")
-
+    print("Evaluation completed.\n\nResults saved to:", f"{os.path.abspath(args.output)}\metrics.json\n")
 
 if __name__ == "__main__":
     main()
