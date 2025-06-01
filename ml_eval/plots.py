@@ -96,9 +96,8 @@ def create_roc_fig(labels, scores, save_fig_as=None, title="ROC Curves"):
     
     scores = pd.read_csv("C:/Users/jorst/Documents/Github/ml_eval_kit/some_dir/y_scores.csv", header=None).values.tolist()
 
-    # Calculate ROC values
-    roc_values = roc_curve(labels, [i[0] for i in scores], pos_label=1) #score is temporary
-    auc = roc_auc_score(labels, scores, multi_class='ovr', average='macro')
+    n_classes = len(set(labels))  # Number of unique classes
+    colors = ["red", "blue", "green", "orange"]
 
     # Figure setup
     plt.figure()
@@ -107,7 +106,11 @@ def create_roc_fig(labels, scores, save_fig_as=None, title="ROC Curves"):
     plt.ylim([0, 1.01])
     plt.grid(True, linestyle='--')
 
-    plt.plot(roc_values[0], roc_values[1], label='ROC Curve', color='blue')
+    # Calculate ROC values
+    for i in range(n_classes):
+        roc_values = roc_curve(labels, [obs[i] for obs in scores], pos_label=1)
+        plt.plot(roc_values[0], roc_values[1], c=colors[i], label=f"Class {i}")
+    auc = roc_auc_score(labels, scores, multi_class='ovr', average='macro')
     
     # Draw the diagonal line
     plt.plot([0, 1], [0, 1], linestyle='--', color='grey')
@@ -118,9 +121,14 @@ def create_roc_fig(labels, scores, save_fig_as=None, title="ROC Curves"):
 
     plt.xlabel('False Positive Rate', fontsize=20)
     plt.ylabel('True Positive Rate', fontsize=20)
+    plt.legend()
 
     # Save fig
     if save_fig_as is not None:
         plt.savefig(save_fig_as)
     else:
         plt.show()
+
+# %%
+#create_roc_fig("C:/Users/jorst/Documents/Github/ml_eval_kit/some_dir/y_true.csv", "C:/Users/jorst/Documents/Github/ml_eval_kit/some_dir/y_scores.csv")
+# %%
