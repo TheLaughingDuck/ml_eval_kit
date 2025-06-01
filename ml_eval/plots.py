@@ -76,3 +76,51 @@ def create_conf_matrix_fig(conf_matrix, classes=None, save_fig_as=None, title=""
         fig.suptitle(title, fontsize=16)
         fig.tight_layout()
         fig.show()
+
+#%%
+from sklearn.metrics import roc_curve, roc_auc_score
+from matplotlib import pyplot as plt
+import pandas as pd
+
+def create_roc_fig(labels, scores, save_fig_as=None, title="ROC Curves"):
+    '''
+    Creates a figure with ROC curves for all classes.
+    '''
+    #raise NotImplementedError("create_roc_fig() is not implemented yet.")
+
+    # Load the true labels and predictions from the provided paths
+    with open(labels, 'r') as f:
+        labels = []
+        for line in f.readlines():
+            labels.append(int(line.strip().rstrip(",")))
+    
+    scores = pd.read_csv("C:/Users/jorst/Documents/Github/ml_eval_kit/some_dir/y_scores.csv", header=None).values.tolist()
+
+    # Calculate ROC values
+    roc_values = roc_curve(labels, [i[0] for i in scores], pos_label=1) #score is temporary
+    auc = roc_auc_score(labels, scores, multi_class='ovr', average='macro')
+
+    # Figure setup
+    plt.figure()
+    plt.tight_layout()
+    plt.xlim([0, 1.01])
+    plt.ylim([0, 1.01])
+    plt.grid(True, linestyle='--')
+
+    plt.plot(roc_values[0], roc_values[1], label='ROC Curve', color='blue')
+    
+    # Draw the diagonal line
+    plt.plot([0, 1], [0, 1], linestyle='--', color='grey')
+    
+    plt.suptitle(title, fontsize=22) # Main title
+    plt.title(f"AUC: {round(auc, 2)} (unweighted average)") # Subtitle
+
+
+    plt.xlabel('False Positive Rate', fontsize=20)
+    plt.ylabel('True Positive Rate', fontsize=20)
+
+    # Save fig
+    if save_fig_as is not None:
+        plt.savefig(save_fig_as)
+    else:
+        plt.show()
